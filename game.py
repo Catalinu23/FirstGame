@@ -10,7 +10,7 @@ radius = 8
 vel = 8
 
 run = True
-while run:
+while run == True:
     pygame.time.delay(100)
 
     for event in pygame.event.get():
