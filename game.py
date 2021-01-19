@@ -1,13 +1,16 @@
 import pygame
 pygame.init()
+pygame.mixer.init()
 
 display_height = 720
 display_width = 1280
 
+pygame.mixer.music.load("files/track.mp3")
+
 win = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption("First Game")
 clock = pygame.time.Clock()
-bg = pygame.image.load("images/bg.jpg")
+bg = pygame.image.load("files/bg.jpg")
 
 x_rect = display_width / 2
 y_rect = display_height - 70
@@ -27,6 +30,7 @@ def ok(x):
 
 ## MAIN
 run = True
+pygame.mixer.music.play(-1)
 while run == True:
     clock.tick(75)
 
@@ -50,6 +54,8 @@ while run == True:
         vel_circle_x *= (-1)
     if (y_circle == 0 or (ok(x_circle) and y_circle == y_rect) ) :
         vel_circle_y *= (-1)
+    if y_circle >= display_height:
+        run = False
 
     x_circle += vel_circle_x
     y_circle += vel_circle_y
